@@ -9,6 +9,7 @@ client.autoCommit = true;
 
 // Remove all documents
 client.deleteByQuery("id:*", function(error, object) {
+    console.log("Remove all document:");
     console.log("Error: ", error);
     console.log("Object: ", object);
 });
@@ -31,6 +32,7 @@ for (var i = 0; i <= SAMPLE_DATA_LIMIT; i++) {
 }
 
 client.add(entries, function(error, object) {
+    console.log("Add documents:");
     console.log("Error: ", error);
     console.log("Object: ", object);
 });
