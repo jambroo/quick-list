@@ -1,5 +1,5 @@
 // NodeJS script to pre-populate 'collection' collection on the solr search pattern.
-const SAMPLE_DATA_LIMIT = 100000000;
+const SAMPLE_DATA_LIMIT = 500000;
 const START_END_DIFFERENCE = 5;
 
 var solr = require('solr-client');
