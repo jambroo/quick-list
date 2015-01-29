@@ -1,5 +1,17 @@
+html, body {
+    height: 100%;
+}
+
 body {
     background-color: #EBEBEB;
+}
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+}
+
+h1 b {
+	color: #336699
 }
 
 .container {
@@ -14,18 +26,6 @@ body {
     display: block;
 }
 
-html, body {
-    height: 100%;
-}
-
 .fill { 
     min-height: 100%;
-}
-
-h1 {
-	font-family: 'Open Sans', sans-serif;
-}
-
-h1 b {
-	color: #336699
 }
