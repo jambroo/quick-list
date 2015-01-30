@@ -4,4 +4,4 @@ Simple proof-of-concept NodeJS app to connect and search a solr instance for ite
 
 Requirements
 ------------
-This NodeJS application requires a running instance of Solr to function. The port Solr should be listening on is port 8983 and contain a disposable collection called 'collection'. Please be aware the populate.js nodejs script will remove all documents in this collection before populating it with test data.
+This NodeJS application requires a running instance of Solr to function. Settings associated with Solr can be found in config.json. Please run the populate.js script to populate Solr with test data.
