@@ -1,28 +1,36 @@
 // NodeJS script to look up a particular entry
-var solr = require('solr-client');
+exports.query = function(r, start, rows) {
+  var solr = require('solr-client');
+  var Q = require('q');
+  var config = require('./config.json');
 
-var client = solr.createClient('localhost', 8983, 'collection');
+  // Connect to Solr
+  var client = solr.createClient(config.host, config.port, config.collection);
 
-if (process.argv.length != 3) {
-  console.log("Must provide a name, start or end search value as an argument.")
-  process.exit();
-}
+  // Get a Q deferred okect to resolve results to
+  var deferred = Q.defer();
 
-// Search query passed as argument
-var queryValue = process.argv[2];
-
-// Logic here is if query is a number search the start attribute, otherwise
-// if query is a string search within name attribute
-var queryStr = "start:" + queryValue;
-if (isNaN(queryValue)) {
-  queryStr = "name:*" + queryValue + "*";
-}
-var query = client.createQuery().q(queryStr);
-client.search(query, function(error, object) {
-  console.log("Search for " + queryValue + ":");
-  console.log("Error: ", error);
-  console.log("Object: ", object);
-  if (object && object.response && object.response.docs) {
-    console.log("Matching entries: ", object.response.docs);
+  // Logic here is if query is a number search the start attribute, otherwise
+  // if query is a string search within name attribute
+  var queryStr = "start:" + r;
+  if (isNaN(r)) {
+    queryStr = "name:*" + r + "*";
   }
-});
+  var query = client.createQuery().q(queryStr).start(start).rows(rows);
+  var request = client.search(query, function(err, obj) {
+    if (!err) {
+      // Resolve with response from Solr
+      if (obj.response.numFound > 0) {
+        deferred.resolve(obj.response);
+      } else {
+        deferred.resolve(null);
+      }
+    } else {
+      // Reject as error has occurred
+      deferred.reject(err);
+    }
+  });
+
+  // Return promise
+  return deferred.promise;
+}
