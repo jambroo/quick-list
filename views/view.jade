@@ -1,0 +1,15 @@
+if results
+  div.pull-right Total: #{ numFound }
+  h2 Results
+  table.table
+    tr
+      th ID
+      th Name
+      th Start
+      th End
+    for result in results
+      tr
+        td #{ result.id }
+        td #{ result.name }
+        td #{ result.start }
+        td #{ result.end }

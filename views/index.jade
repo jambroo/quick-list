@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css")
+    script(type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css')
+    link(rel="stylesheet" href="quick-list.css")
+    script(type="text/javascript" src="search.js")
+    title Quick List
+  body
+    div(class="container fill")
+      h1 <b>Quick</b>List
+      form.form-horizontal
+        div.form-group
+          label(for="q" class="col-sm-2 control-label") Search
+          div.col-sm-10
+            input.form-control#q
+        div#result
